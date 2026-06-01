@@ -102,7 +102,7 @@ export const updateProject = async(req,res) => {
     }
 };
 
-export default deleteProject = async(req,res) => {
+export const deleteProject = async(req,res) => {
     try { 
         const project = await prisma.project.findFirst({
             where: {

@@ -12,12 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use('/',(req,res)=>{
-    res.send("DevFlow API Running");
-});
-
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+
+app.get('/',(req,res)=>{
+    res.send("DevFlow API Running");
+});
 
 const PORT = process.env.PORT || 5000;
 
