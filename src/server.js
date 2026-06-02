@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
+import snippetRoutes from "./routes/snippetRoutes.js"
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/sessions", sessionRoutes);
+app.use("/api/snippets", snippetRoutes);
 
 app.get('/',(req,res)=>{
     res.send("DevFlow API Running");

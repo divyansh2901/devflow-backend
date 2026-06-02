@@ -19,6 +19,7 @@ model User {
 
   projects Project[] // one user -> many Projects
   sessions Session[]
+  snippets Snippet[]
 }
 
 model Project {
@@ -51,9 +52,20 @@ model Session {
 }
 
 
+model Snippet {
+  id Int @id @default(autoincrement())
+  title String
+  language String
+  code String
+  tags String?
+  createdAt DateTime @default(now())
 
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 // USER => Projects
 //         Sessions
+//         Snippets
 
 // PROJECT => Sessions
