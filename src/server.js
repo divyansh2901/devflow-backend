@@ -6,6 +6,7 @@ import projectRoutes from "./routes/projectRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 import snippetRoutes from "./routes/snippetRoutes.js";
 import debugNoteRoutes from "./routes/debugNoteRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/snippets", snippetRoutes);
 app.use("/api/debug-notes", debugNoteRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.get('/',(req,res)=>{
     res.send("DevFlow API Running");
