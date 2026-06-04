@@ -20,6 +20,7 @@ model User {
   projects Project[] // one user -> many Projects
   sessions Session[]
   snippets Snippet[]
+  debugNotes DebugNote[]
 }
 
 model Project {
@@ -64,8 +65,20 @@ model Snippet {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model DebugNote {
+  id          Int      @id @default(autoincrement())
+  title       String
+  issue       String
+  solution    String
+  tags        String?
+  createdAt   DateTime @default(now())
+
+  userId      Int
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 // USER => Projects
 //         Sessions
 //         Snippets
+//         DebugNote
 
 // PROJECT => Sessions

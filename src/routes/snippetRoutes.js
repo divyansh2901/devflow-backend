@@ -6,7 +6,8 @@ import {
     getSnippets,
     getSnippetById,
     updateSnippet,
-    deleteSnippet
+    deleteSnippet,
+    searchSnippet,
 } from "../controllers/snippetController.js"
 
 const router = express.Route();
@@ -15,6 +16,7 @@ router.use(authMiddleware);
 
 router.post("/", createSnippet);
 router.get("/", getSnippets);
+router.get("/search", searchSnippets);
 router.get("/:id", getSnippetById);
 router.put("/:id", updateSnippet);
 router.delete("/:id", deleteSnippet);

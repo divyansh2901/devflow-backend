@@ -4,7 +4,8 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
-import snippetRoutes from "./routes/snippetRoutes.js"
+import snippetRoutes from "./routes/snippetRoutes.js";
+import debugNoteRoutes from "./routes/debugNoteRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/snippets", snippetRoutes);
+app.use("/api/debug-notes", debugNoteRoutes);
 
 app.get('/',(req,res)=>{
     res.send("DevFlow API Running");

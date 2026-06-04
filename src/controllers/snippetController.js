@@ -153,3 +153,31 @@ export const deleteSnippet = async (req, res) => {
     });
   }
 };
+
+export const searchSnippets = async (req, res) => {
+  try {
+    const { tag } = req.query;
+
+    const snippets = await prisma.snippet.findMany({
+      where: {
+        userId: req.user.id,
+        tags: {
+          contains: tag,
+          mode: "insensitive",
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.status(200).json(snippets);
+
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
