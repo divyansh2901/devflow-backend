@@ -2,7 +2,6 @@ import prisma from "../config/prisma.js";
 
 export const getAnalytics = async (req, res) => {
   try {
-
     const userId = req.user.id;
 
     const totalProjects =
@@ -77,6 +76,29 @@ export const getAnalytics = async (req, res) => {
       }
     }
 
+    const recentSessions =
+      await prisma.session.findMany({
+        where: {
+          userId,
+        },
+        take: 5,
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+    const codingTimePerProject =
+      projects.map((project) => ({
+        project: project.name,
+
+        hours:
+          project.sessions.reduce(
+            (sum, session) =>
+              sum + session.duration,
+            0
+          ) / 60,
+      }));
+
     res.status(200).json({
       totalProjects,
       totalSessions,
@@ -84,6 +106,10 @@ export const getAnalytics = async (req, res) => {
       totalSnippets,
       totalDebugNotes,
       mostActiveProject,
+
+      // Dashboard Data
+      recentSessions,
+      codingTimePerProject,
     });
 
   } catch (error) {
