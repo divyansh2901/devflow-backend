@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import errorHandler from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
@@ -14,7 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use(errorHandler);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);

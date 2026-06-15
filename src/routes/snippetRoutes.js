@@ -1,20 +1,30 @@
-import express from "express"
-import authMiddleware from "../middleware/authMiddleware.js"
+import express from "express";
+import authMiddleware from "../middleware/authMiddleware.js";
+import validate from "../middleware/validate.js";
 
 import {
-    createSnippet,
-    getSnippets,
-    getSnippetById,
-    updateSnippet,
-    deleteSnippet,
-    searchSnippet,
-} from "../controllers/snippetController.js"
+  createSnippet,
+  getSnippets,
+  getSnippetById,
+  updateSnippet,
+  deleteSnippet,
+  searchSnippets,
+} from "../controllers/snippetController.js";
 
-const router = express.Route();
+import {
+  createSnippetSchema,
+} from "../validations/snippetValidation.js";
+
+const router = express.Router();
 
 router.use(authMiddleware);
 
-router.post("/", createSnippet);
+router.post(
+  "/",
+  validate(createSnippetSchema),
+  createSnippet
+);
+
 router.get("/", getSnippets);
 router.get("/search", searchSnippets);
 router.get("/:id", getSnippetById);
