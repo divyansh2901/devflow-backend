@@ -28,6 +28,8 @@ app.get('/',(req,res)=>{
     res.send("DevFlow API Running");
 });
 
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, ()=>{
