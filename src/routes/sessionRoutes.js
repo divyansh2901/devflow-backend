@@ -9,7 +9,7 @@ import {
     getSessionsByProject,
 } from "../controllers/sessionController.js";
 
-const router = express.Router;
+const router = express.Router();
 
 router.use(authMiddleware);
 
