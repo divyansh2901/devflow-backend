@@ -11,7 +11,7 @@ import {
 
 const router = express.Router;
 
-router.arguments(authMiddleware);
+router.use(authMiddleware);
 
 router.post("/", createSession);
 router.get("/", getSessions);
