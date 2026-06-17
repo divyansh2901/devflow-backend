@@ -1,6 +1,6 @@
 import express from "express";
-import validate from "../middleware/authMiddleware.js";
-
+import validate from "../middleware/validate.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 import {
     registerUser,
     loginUser,
