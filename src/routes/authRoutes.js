@@ -12,7 +12,6 @@ import {
   loginSchema,
 } from "../validations/authValidation.js";
 
-import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
